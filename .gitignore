@@ -1,0 +1,29 @@
+lib-cov
+*.seed
+*.log
+*.dat
+*.out
+*.pid
+*.gz
+*.pyc
+
+npm-debug.log
+node_modules
+v1/node_modules/*
+v1/npm-debug.log
+
+v1/credentials.js
+v1/utilities/scripts/credentials.py
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes

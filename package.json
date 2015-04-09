@@ -1,0 +1,36 @@
+{
+  "name": "node-api-template",
+  "version": "1.0.0",
+  "description": "An easy to understand, mildly opinionated, RESTish API template",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jczaplew/node-api-template"
+  },
+  "scripts": {
+    "postinstall": "npm install --prefix ./v1 ./v1",
+    "start": "node server.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "api",
+    "REST",
+    "RESTful"
+  ],
+  "contributors": [
+    {
+      "name": "John J Czaplewski"
+    }
+  ],
+  "license": "CC-BY",
+  "dependencies": {
+    "body-parser": "^1.6.3",
+    "express": "4.x.x"
+  },
+  "devDependencies": {
+    "async": "0.9.x",
+    "mocha": "^1.21.4",
+    "should": "^4.0.4",
+    "supertest": "^0.14.0"
+  }
+}
