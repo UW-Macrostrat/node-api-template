@@ -1,7 +1,16 @@
 # node-api-template
-An easy to understand, mildly opinionated, RESTish API template
+An easy to understand, mildly opinionated, RESTish API template built with Node.js
 
 ### About
+Designed to minimally abstract database logic, this template scaffolds common API design decisions
+and allows you to quickly distribute your data in common formats such as JSON and CSV.
+
+### Features
++ Versioning
++ Support for various data stores
++ Tests
++ Flexibility
++ Extensibility
 
 
 ### Install
@@ -20,8 +29,11 @@ The API runs on port ````5000```` by default.
 npm test
 ````
 
+### Running in production
+Look into [forever](https://github.com/foreverjs/forever) and [pm2](https://github.com/Unitech/pm2) to decide which best fits your needs.
+
 ### Organization
-Each version of the API functions as a self-contained module, and therefore has its own ````package.json```` and dependencies. 
+Each version of the API functions as a self-contained module, and therefore has its own ````package.json````, ````README````, and dependencies. 
 
 ### Author
 [John J Czaplewski](https://github.com/jczaplew)

@@ -1,0 +1,11 @@
+{
+  "name": "node-api-template-v2",
+  "version": "0.1.0",
+  "description": "v2",
+  "dependencies": {
+    "dbgeo": "0.0.x",
+    "express-csv": "git://github.com/jczaplew/express-csv.git",
+    "mysql": "2.3.x",
+    "pg": "^3.4.0"
+  }
+}

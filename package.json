@@ -8,7 +8,7 @@
     "url": "https://github.com/jczaplew/node-api-template"
   },
   "scripts": {
-    "postinstall": "npm install --prefix ./v1 ./v1",
+    "postinstall": "npm install --prefix ./v1 ./v1 && npm install --prefix ./v2 ./v2 ",
     "start": "node server.js",
     "test": "mocha"
   },

@@ -94,12 +94,12 @@ function atLeastOneResult(res) {
   } 
 }
 
-describe('Routes', function() {
+describe('v1', function() {
 /* Root route */
   describe('root', function() {
     it('should return a list of all visible routes', function(done) {
       request(host)
-        .get("/api")
+        .get("/api/v1")
         .expect(aSuccessfulRequest)
         .expect(json)
         .end(function(error, res) {
@@ -113,7 +113,7 @@ describe('Routes', function() {
   describe("types", function() {
     it('should return metadata', function(done) {
       request(host)
-        .get("/api/types")
+        .get("/api/v1/types")
         .expect(aSuccessfulRequest)
         .expect(json)
         .expect(metadata)
@@ -125,7 +125,7 @@ describe('Routes', function() {
 
     it('should accept a type parameter', function(done) {
       request(host)
-        .get("/api/types?type=test")
+        .get("/api/v1/types?type=test")
         .expect(aSuccessfulRequest)
         .expect(json)
         .expect(function(res) {
@@ -141,7 +141,7 @@ describe('Routes', function() {
 
     it('should output CSV', function(done) {
       request(host)
-        .get("/api/types?type=test&format=csv")
+        .get("/api/v1/types?type=test&format=csv")
         .expect(aSuccessfulRequest)
         .expect(csv)
         .end(function(error, res) {
@@ -155,7 +155,7 @@ describe('Routes', function() {
   describe("hidden", function() {
     it('should return metadata', function(done) {
       request(host)
-        .get("/api/hidden")
+        .get("/api/v1/hidden")
         .expect(aSuccessfulRequest)
         .expect(json)
         .expect(metadata)
@@ -167,7 +167,101 @@ describe('Routes', function() {
 
     it('should accept an all parameter', function(done) {
       request(host)
-        .get("/api/hidden?all")
+        .get("/api/v1/hidden?all")
+        .expect(aSuccessfulRequest)
+        .expect(json)
+        .expect(function(res) {
+          if (res.body.success.data.length < 4) {
+            throw new Error("hidden does not return the correct number of rows");
+          }
+        })
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+  });
+});
+
+
+
+
+
+
+describe('v2', function() {
+/* Root route */
+  describe('root', function() {
+    it('should return a list of all visible routes', function(done) {
+      request(host)
+        .get("/api/v2")
+        .expect(aSuccessfulRequest)
+        .expect(json)
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+  });
+
+/* types */
+  describe("orange", function() {
+    it('should return metadata', function(done) {
+      request(host)
+        .get("/api/v2/orange")
+        .expect(aSuccessfulRequest)
+        .expect(json)
+        .expect(metadata)
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+
+    it('should accept a type parameter', function(done) {
+      request(host)
+        .get("/api/v2/orange?type=test")
+        .expect(aSuccessfulRequest)
+        .expect(json)
+        .expect(function(res) {
+          if (res.body.success.data[0].type != "test") {
+            throw new Error("types does not return requested parameter");
+          }
+        })
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+
+    it('should output CSV', function(done) {
+      request(host)
+        .get("/api/v2/orange?type=test&format=csv")
+        .expect(aSuccessfulRequest)
+        .expect(csv)
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+  });
+
+/* hidden */
+  describe("hidden", function() {
+    it('should return metadata', function(done) {
+      request(host)
+        .get("/api/v2/hidden")
+        .expect(aSuccessfulRequest)
+        .expect(json)
+        .expect(metadata)
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+
+    it('should accept an all parameter', function(done) {
+      request(host)
+        .get("/api/v2/hidden?all")
         .expect(aSuccessfulRequest)
         .expect(json)
         .expect(function(res) {
@@ -182,4 +276,35 @@ describe('Routes', function() {
     });
   });
 
+/* gis */
+  describe("gis", function() {
+    it('should return metadata', function(done) {
+      request(host)
+        .get("/api/v2/gis")
+        .expect(aSuccessfulRequest)
+        .expect(json)
+        .expect(metadata)
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+
+    it('should accept an all parameter', function(done) {
+      request(host)
+        .get("/api/v2/gis?all")
+        .expect(aSuccessfulRequest)
+        .expect(json)
+        .expect(function(res) {
+          if (res.body.success.data.length < 1) {
+            throw new Error("gis does not return the correct number of rows");
+          }
+        })
+        .end(function(error, res) {
+          if (error) return done(error);
+          done();
+        });
+    });
+  });
 });
+

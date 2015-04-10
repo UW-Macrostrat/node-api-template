@@ -4,8 +4,8 @@
   var defs = {};
 
   // Instead of adding metadata to each route in api.js, we are going to do it here
-  defs["/types"] = {
-    "description": "Optionally provide a type parameter to see it in the response. Doesn't exist in v2.",
+  defs["/orange"] = {
+    "description": "This doesn't exist in v1",
     "visible": true,
     "options": {
       "parameters": {
@@ -14,19 +14,38 @@
       },
       "output_formats": ["json", "csv"],
       "examples": [
-        "/api/types?type=MyFavoriteColorIsGreen",
-        "/api/types?type=Cats&format=csv",
+        "/api/orange?type=MyFavoriteColorIsGreen",
+        "/api/orange?type=Cats&format=csv",
       ],
       "fields": [
-        "id",
+        "oid",
         "type"
       ]
     }
   };
 
 
+  defs["/gis"] = {
+    "description": "View the code in v2/gis.js to see how to query a PostGIS database and return GeoJSON",
+    "visible": true,
+    "options": {
+      "parameters": {
+        "all": "Show the response",
+        "format": "string, desired output format"
+      },
+      "output_formats": ["json", "csv"],
+      "examples": [
+        "/api/gis?all"
+      ],
+      "fields": [
+        "message"
+      ]
+    }
+  };
+
+
   defs["/hidden"] = {
-    "description": "This route is hidden but available to use. Available in both v1 and v2",
+    "description": "This route is hidden but available to use. Available in both v1 and v2.",
     "visible": false,
     "options": {
       "parameters": {
