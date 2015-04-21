@@ -24,7 +24,7 @@ app.use("/api", v2);
 app.set("json spaces", 2);
 
 
-var port = 5000;
+var port = process.agrv[2] || 5000;
 app.listen(port, function() {
   console.log("Listening on port " + port);
 });
