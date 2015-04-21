@@ -57,5 +57,8 @@ Both [forever](https://github.com/foreverjs/forever) and [pm2](https://github.co
 ### Author
 [John J Czaplewski](https://github.com/jczaplew), with inspiration and assistance from [Puneet Kishor](http://punkish.org) and [Shanan Peters](http://strata.geology.wisc.edu).
 
+### Funding
+Development supported by NSF CAREER EAR-1150082 and NSF ICER-1440312.
+
 ### License
 CC-BY for all code unique to this API.
