@@ -24,7 +24,6 @@
   ],
   "license": "CC-BY",
   "dependencies": {
-    "body-parser": "^1.6.3",
     "express": "4.x.x"
   },
   "devDependencies": {

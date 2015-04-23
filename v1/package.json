@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "v1",
   "dependencies": {
+    "cors": "^2.5.3",
     "express-csv": "git://github.com/jczaplew/express-csv.git",
     "mysql": "2.3.x",
     "pg": "^3.4.0"
