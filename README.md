@@ -7,8 +7,6 @@ and allows you to quickly distribute your data in common formats such as JSON an
 
 While researching API design with Node.js, there were many questions, such as versioning and handling of relational databases, that did not have obvious answers. This template is one opinion of answers to many common API design questions.
 
-Two "versions" are included simply to demonstrate what it looks like to work with multiple versions. You probably want to start with just one.
-
 ### Features
 + Versioning
 + Support for various data stores
