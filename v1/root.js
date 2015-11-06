@@ -7,7 +7,7 @@ module.exports = function(req, res, next) {
   // Automatically return all available routes and their definitions as defined in defs.js
   api.stack.filter(function(d) {
     if (d.route && d.route.path !== "*" && d.route.path !== null && d.route.path.length) {
-      if (defs[d.route.path] && defs[d.route.path].visible) { 
+      if (defs[d.route.path] && defs[d.route.path].visible) {
         routes[d.route.path] = (defs[d.route.path] && defs[d.route.path].description) ? defs[d.route.path].description : "";
       }
     }
@@ -15,7 +15,7 @@ module.exports = function(req, res, next) {
   res.json({
     "success": {
       "v": api.version,
-      "availableVersions": [1, 2],
+      "availableVersions": [1],
       "description": "This is the root of v" + api.version + " the node-api-template API",
       "routes": routes
     }

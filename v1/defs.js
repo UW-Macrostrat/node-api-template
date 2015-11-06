@@ -1,6 +1,4 @@
 (function() {
-  var async = require("async");
-
   var defs = {};
 
   // Instead of adding metadata to each route in api.js, we are going to do it here

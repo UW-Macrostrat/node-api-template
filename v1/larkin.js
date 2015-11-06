@@ -1,9 +1,9 @@
 var async = require("async"),
-    csv = require("express-csv"),
+    csv = require("csv-express"),
     api = require("./api"),
     defs = require("./defs");
 
-/* 
+/*
 
 Optional database modules
 
@@ -56,8 +56,8 @@ var mysql = require("mysql"),
   };
 
 
-  // If you want to use Postgres  
-  larkin.queryPg = function(db, sql, params, callback, send, res, format, next) {
+  // If you want to use Postgres
+  larkin.queryPg = function(db, sql, params, callback) {
     pg.connect("postgres://" + credentials.pg.user + "@" + credentials.pg.host + "/" + db, function(err, client, done) {
       if (err) {
         this.log("error", "error connecting - " + err);
@@ -69,57 +69,58 @@ var mysql = require("mysql"),
             this.log("error", err);
             callback(err);
           } else {
-            if (send) {
-              this.sendData(result, res, format, next);
-            } else {
-              callback(null, result);
-            }
+            callback(null, result);
           }
 
         }.bind(this));
-       // console.log(query);
+        //console.log(query.text, query.values);
       }
     }.bind(this));
   };
 
-
-  // Return data to the client
-  larkin.sendData = function(data, res, format, next) {
-    if (format === "csv") {
-      res.csv(data, true)
-    } else {
-      if (data.length > 5) {
-        res
-          .set("Content-type", "application/json; charset=utf-8")
-          .send(JSON.stringify({"success": {"v": api.version,"data": data}}, null, 0));
-        } else {
-          res.json({
-            "success": {
-              "v": api.version,
-              "data": data
-            }
-          });
-        }
+  larkin.sendData = function(req, res, next, options, outgoing) {
+    if (options && options.format === "csv") {
+      return res.csv(outgoing.data, true);
     }
-   };
 
-   // Identical to sendData, but removes padding
-  larkin.sendCompact = function(data, res, format) {
-    if (format === "csv") {
-      res.csv(data, true);
-    } else {
-      res
+    if (options && options.bare) {
+      return res
         .set("Content-type", "application/json; charset=utf-8")
-        .send(JSON.stringify({"success": {"v": api.version,"data": data}}, null, 0));
+        .send(JSON.stringify(outgoing.data, null, 0));
     }
+
+    if (options.refs) {
+      larkin.getRefs(options.refs, outgoing.data, function(refs) {
+        outgoing.refs = refs;
+        larkin.finishSend(req, res, next, options, outgoing);
+      });
+    } else {
+      larkin.finishSend(req, res, next, options, outgoing);
+    }
+
   };
-  
-  // Identical to sendCompact, but removes standard wrapper
-  larkin.sendBare = function(data, res, next) {
-    res
-      .set("Content-type", "application/json; charset=utf-8")
-      .send(JSON.stringify(data, null, 0));
-   };
+
+  larkin.finishSend = function(req, res, next, options, outgoing) {
+    var responseObject = {
+      "success": {
+        "v": api.version,
+        "license": api.license,
+        "data": outgoing.data
+      }
+    }
+
+    if (outgoing.refs) {
+      responseObject.success["refs"] = outgoing.refs;
+    }
+
+    if ((options && options.compact) || outgoing.data.length <= 5) {
+      return res
+        .set("Content-type", "application/json; charset=utf-8")
+        .send(JSON.stringify(responseObject, null, 0));
+    }
+
+    return res.json(responseObject);
+  }
 
 
   larkin.info = function(req, res, next) {
@@ -130,9 +131,9 @@ var mysql = require("mysql"),
     });
   };
 
-  // Send an error to the client
+
   larkin.error = function(req, res, next, message, code) {
-    var responseMessage = (message) ? message : "Something went wrong. Please contact the administrator.";
+    var responseMessage = (message) ? message : "Something went wrong";
     if (code && code === 500 || code === 404) {
       res
         .status((code) ? code : 200)
@@ -148,13 +149,14 @@ var mysql = require("mysql"),
           .json({
             "error": {
               "v": api.version,
+              "license": api.license,
               "message": responseMessage,
               "about": definition
             }
           });
       });
     }
-        
+
   };
 
   larkin.log = function(type, message) {
@@ -190,7 +192,7 @@ var mysql = require("mysql"),
       };
       routeDefinition.options.fields = fields;
       callback(routeDefinition);
-    }); 
+    });
   };
 
 

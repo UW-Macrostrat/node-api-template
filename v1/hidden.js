@@ -20,14 +20,12 @@ module.exports = function(req, res, next) {
       {"id": 3}
     );
   }
-  
-  // If a specific output format is requested, and it is an accepted format as defined in api.js, return the response in that format
-  if (req.query.format && api.acceptedFormats.standard[req.query.format]) {
-    larkin.sendData(data, res, (api.acceptedFormats.standard[req.query.format]) ? req.query.format : "json", next);
-  
-  // Otherwise, just send a compact JSON response
-  } else {
-    larkin.sendData(data, res, null, next);
-  }
+
+  larkin.sendData(req, res, next, {
+    format: (api.acceptedFormats.standard[req.query.format]) ? req.query.format : "json",
+    bare: (api.acceptedFormats.bare[req.query.format]) ? true : false
+  }, {
+    data: data
+  });
 
 }

@@ -4,9 +4,12 @@ module.exports = {
     if (res.statusCode !== 200) {
       throw new Error("Bad status code");
     }
+    /*
+    You may or may not want this
     if (res.headers["access-control-allow-origin"] !== "*") {
       throw new Error("Wrong access-control-allow-origin headers");
     }
+    */
   },
 
   metadata: function(res) {
@@ -86,7 +89,6 @@ module.exports = {
   atLeastOneResult: function(res) {
     if (res.body.success.data.length < 1) {
       throw new Error("Should have returned at least one result");
-    } 
+    }
   }
 }
- 

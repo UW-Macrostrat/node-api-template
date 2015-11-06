@@ -1,16 +1,16 @@
 {
   "name": "node-api-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An easy to understand, mildly opinionated, RESTish API template",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jczaplew/node-api-template"
+    "url": "https://github.com/UW-Macrostrat/node-api-template"
   },
   "scripts": {
-    "postinstall": "npm install --prefix ./v1 ./v1 && npm install --prefix ./v2 ./v2 ",
+    "postinstall": "npm install --prefix ./v1 ./v1",
     "start": "node server.js",
-    "test": "mocha"
+    "test": "mocha ./v1/test"
   },
   "keywords": [
     "api",
@@ -24,10 +24,10 @@
   ],
   "license": "CC-BY",
   "dependencies": {
-    "express": "4.x.x"
+    "express": "^4.13.3"
   },
   "devDependencies": {
-    "async": "0.9.x",
+    "async": "^1.5.0",
     "mocha": "^1.21.4",
     "should": "^4.0.4",
     "supertest": "^0.14.0"

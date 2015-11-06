@@ -2,10 +2,13 @@
   "name": "node-api-template-v1",
   "version": "0.1.0",
   "description": "v1",
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "cors": "^2.5.3",
-    "express-csv": "git://github.com/jczaplew/express-csv.git",
-    "mysql": "2.3.x",
-    "pg": "^3.4.0"
+    "csv-express": "^1.1.0",
+    "mysql": "^2.9.0",
+    "pg": "^4.4.3"
   }
 }
