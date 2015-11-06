@@ -1,7 +1,7 @@
 var async = require("async"),
     csv = require("csv-express"),
     api = require("./api"),
-    defs = require("./defs");
+    meta = require("./meta");
 
 /*
 
@@ -165,16 +165,16 @@ var mysql = require("mysql"),
 
   // Will return all field definitions
   larkin.defineFields = function(route, callback) {
-    var routeDefs = {}
-    async.each(defs[route].options.fields, function(field, callback) {
-      if (defs.define.hasOwnProperty(field)) {
-        routeDefs[field] = defs.define[field];
+    var routemeta = {}
+    async.each(meta[route].options.fields, function(field, callback) {
+      if (meta.define.hasOwnProperty(field)) {
+        routemeta[field] = meta.define[field];
       } else {
-        routeDefs[field] = ""
+        routemeta[field] = ""
       }
       callback()
     }, function(error, result) {
-      callback(routeDefs);
+      callback(routemeta);
     });
   };
 
@@ -183,11 +183,11 @@ var mysql = require("mysql"),
     this.defineFields(route, function(fields) {
       var routeDefinition = {
         "v": api.version,
-        "description": defs[route].description,
+        "description": meta[route].description,
         "options": {
-          "parameters": defs[route].options.parameters,
-          "output_formats": defs[route].options.output_formats,
-          "examples": defs[route].options.examples
+          "parameters": meta[route].options.parameters,
+          "output_formats": meta[route].options.output_formats,
+          "examples": meta[route].options.examples
         }
       };
       routeDefinition.options.fields = fields;

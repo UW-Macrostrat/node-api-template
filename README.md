@@ -20,7 +20,7 @@ Two "versions" are included simply to demonstrate what it looks like to work wit
 
 
 ### Organization
-Each version of the API functions as a self-contained module, and therefore has its own ````package.json````, ````README````, and dependencies. 
+Each version of the API functions as a self-contained module, and therefore has its own ````package.json````, ````README````, and dependencies.
 
 
 ### Install
@@ -30,7 +30,7 @@ cd node-api-template
 npm install
 ````
 
-If using MySQL or Postgres, you will need to update rename ````vx/credentials.example.js```` to ````vx/credentials.js```` and input your credentials. 
+If using MySQL or Postgres, you will need to update rename ````vx/credentials.example.js```` to ````vx/credentials.js```` and input your credentials.
 
 
 ### Start
@@ -38,11 +38,11 @@ If using MySQL or Postgres, you will need to update rename ````vx/credentials.ex
 npm start
 ````
 
-The API runs on port ````5000```` by default, and the root can be accessed by navigating to ````http://localhost:5000/api```` or ````http://localhost:5000/api/vX```` in your browser. 
+The API runs on port ````5555```` by default, and the root can be accessed by navigating to ````http://localhost:5555/api```` or ````http://localhost:5555/api/vX```` in your browser.
 
 
 ### Testing
-The tests for each version of the API can be found in ````test/vxTests````, and each route has its own test file. Functions used for testing the validity of each response can be found in ````test/validators.js````, and various settings in ````test/settings.js````.
+The tests for each version of the API can be found in ````vx/test````, and each route has its own test file. Functions used for testing the validity of each response can be found in ````validators.js````, and various settings in ````settings.js````.
 
 To run the tests:
 

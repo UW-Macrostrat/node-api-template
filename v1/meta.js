@@ -1,8 +1,8 @@
 (function() {
-  var defs = {};
+  var meta = {};
 
   // Instead of adding metadata to each route in api.js, we are going to do it here
-  defs["/types"] = {
+  meta["/types"] = {
     "description": "Optionally provide a type parameter to see it in the response. Doesn't exist in v2.",
     "visible": true,
     "options": {
@@ -23,7 +23,7 @@
   };
 
 
-  defs["/hidden"] = {
+  meta["/hidden"] = {
     "description": "This route is hidden but available to use. Available in both v1 and v2",
     "visible": false,
     "options": {
@@ -43,10 +43,10 @@
 
 
   // This is the primary dictionary for all field definitions
-  defs.define = {
+  meta.define = {
     "id": "integer, unique identifier",
     "type": "string, a random user provided string"
   };
 
-  module.exports = defs;
+  module.exports = meta;
 }());

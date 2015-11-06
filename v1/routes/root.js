@@ -1,14 +1,14 @@
-var api = require("./api"),
-    defs = require("./defs");
+var api = require("../api"),
+    meta = require("../meta");
 
 module.exports = function(req, res, next) {
   var routes = {};
 
-  // Automatically return all available routes and their definitions as defined in defs.js
+  // Automatically return all available routes and their definitions as defined in meta.js
   api.stack.filter(function(d) {
     if (d.route && d.route.path !== "*" && d.route.path !== null && d.route.path.length) {
-      if (defs[d.route.path] && defs[d.route.path].visible) {
-        routes[d.route.path] = (defs[d.route.path] && defs[d.route.path].description) ? defs[d.route.path].description : "";
+      if (meta[d.route.path] && meta[d.route.path].visible) {
+        routes[d.route.path] = (meta[d.route.path] && meta[d.route.path].description) ? meta[d.route.path].description : "";
       }
     }
   });

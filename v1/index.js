@@ -6,16 +6,16 @@ var api = require("./api"),
 */
 
 api.route("/")
-  .get(require("./root"));
+  .get(require("./routes/root"));
 
 api.route("/types")
-  .get(require("./types"));
+  .get(require("./routes/types"));
 
 api.route("/hidden")
-  .get(require("./hidden"));
+  .get(require("./routes/hidden"));
 
 api.route("*")
-  .get(require("./catchall"));
+  .get(require("./routes/catchall"));
 
 api.use(function(err, req, res, next) {
   if(err.status !== 404) {

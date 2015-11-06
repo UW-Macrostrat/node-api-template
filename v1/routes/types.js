@@ -1,5 +1,5 @@
-var api = require("./api"),
-    larkin = require("./larkin");
+var api = require("../api"),
+    larkin = require("../larkin");
 
 module.exports = function(req, res, next) {
   // If the bare route is requested, return metadata
@@ -7,19 +7,16 @@ module.exports = function(req, res, next) {
     return larkin.info(req, res, next);
   }
 
+
+  /*
+   Here you could query a database, process the request, etc...
+  */
+
+
   // An example of sending a response
-
   var data = [
-    {"id": 0}
+    {"id": 0, "type": (req.query.type) ? req.query.type : "None given"}
   ];
-
-  if ("all" in req.query) {
-    data.push(
-      {"id": 1},
-      {"id": 2},
-      {"id": 3}
-    );
-  }
 
   larkin.sendData(req, res, next, {
     format: (api.acceptedFormats.standard[req.query.format]) ? req.query.format : "json",
