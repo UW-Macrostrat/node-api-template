@@ -33,25 +33,18 @@ var mysql = require("mysql"),
     });
   };
 
-  larkin.queryMySQL = function(sql, params, callback, send, res, format, next) {
+  larkin.queryMySQL = function(sql, params, callback) {
     this.pool.getConnection(function(err, connection) {
       connection.query(sql, params, function(error, result) {
         // Remove the connection
         connection.destroy();
         if (error) {
-          if (callback) {
-            callback(error);
-          } else {
-            this.error(res, next, "Error retrieving from MySQL.", error);
-          }
-        } else {
-          if (send) {
-            this.sendData(result, res, format, next);
-          } else {
-            callback(null, result);
-          }
+          return callback(error);
         }
-      }.bind(this));
+
+        callback(null, result);
+
+      });
     }.bind(this));
   };
 
