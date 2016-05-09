@@ -3,9 +3,9 @@ A mildly opinionated, RESTish API template built with Node.js
 
 ### About
 Designed to minimally abstract database logic, this template scaffolds common API design decisions
-and allows you to quickly distribute your data in common formats such as JSON and CSV. Meant to serve as a boilerplate for distributing data.
+and allows you to quickly distribute your data in common formats, such as JSON and CSV. This is meant to serve as a boilerplate for quickly establishing an API for an existing database system. We have succesfully and deployed this API framework on top of MariaDB, Postgres, and MongoDB.
 
-While researching API design with Node.js, there were many questions, such as versioning and handling of relational databases, that did not have obvious answers. This template is one opinion of answers to many common API design questions.
+While researching API design with Node.js, there were many questions, such as versioning and handling of relational databases, that did not have obvious answers. This template is one opinion on a set of answers to many common API design questions.
 
 ### Features
 + Versioning
