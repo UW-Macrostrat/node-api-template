@@ -23,8 +23,9 @@ Each version of the API functions as a self-contained module, and therefore has 
 
 ### Install
 ````
-git clone https://github.com/UW-Macrostrat/node-api-template.git
-cd node-api-template
+curl -LOk https://github.com/UW-Macrostrat/node-api-template/archive/master.zip
+unzip master.zip
+cd node-api-template-master
 npm install
 ````
 

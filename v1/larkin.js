@@ -117,7 +117,8 @@ var mysql = require("mysql"),
 
 
   larkin.info = function(req, res, next) {
-    this.defineRoute(req.route.path, function(definition) {
+    var formatted = req.originalUrl.replace("/api/v" + api.version, "").replace("/api", "").replace(/\/$/, "")
+    this.defineRoute(formatted, function(definition) {
       res.json({
         "success": definition
       });

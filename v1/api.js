@@ -1,6 +1,5 @@
-var express = require("express"),
-    cors = require("cors");
-
+var express = require("express");
+va cors = require("cors");
 var api = express.Router();
 
 api.use(cors({
@@ -27,7 +26,7 @@ api.acceptedFormats = {
 };
 
 api.version = 1;
-api.license = "CC-BY";
+api.license = "CC-BY 4.0";
 
 // Export the module
 module.exports = api;
