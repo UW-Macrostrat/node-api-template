@@ -1,5 +1,5 @@
 var express = require("express");
-va cors = require("cors");
+var cors = require("cors");
 var api = express.Router();
 
 api.use(cors({
