@@ -58,25 +58,3 @@ Fetches and returns all field definitions for a given route. Always called by ``
 
 ### .defineRoute(route, callback)
 Forms a definition response for a given route. Fetches all field defintions using ````.defineFields````. Usually called by ````.error````.
-
-
-### .getOutputFormat(requestedFormat)
-Given a requested format, simply maps ````geojson_bare```` to ````geojson````, ````topojson_bare```` to ````topojson````, and ````geojson```` and ````topojson```` to ````geojson````.
-
-
-### .jsonifyPipes(data, data_type)
-Takes a pipe-delimited field and turns it into a JSON array, with an optional ````data_type````, which can be "integers", "floats", or "strings". Defaults to "strings".
-
-````
-var output = "54|1|98";
-
-output = larkin.jsonifyPipes(output, "numeric");
-
-    --> output now equals [54, 1, 98]
-
-var someStrings = "carbonate|marine|shallow subtidal";
-
-someStrings = larkin.jsonifyPipes(someStrings);
-
-    --> someStrings now equals ["carbonate", "marine", "shallow subtidal"]
-````
